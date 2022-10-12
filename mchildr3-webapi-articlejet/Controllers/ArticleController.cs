@@ -26,7 +26,7 @@ namespace mchildr3_webapi_articlejet.Controllers
                 return Ok($"Status 200 -- Hey! Good Key! Here is article {id}");
         }
 
-        // ex. POST api/v1/article/?key=1111
+        // ex. POST api/v1/article/?key=1111 -- working
         // valid user can add a new article
         /// <summary>
         /// This method makes a POST request adding a new article if UserID is valid
@@ -39,7 +39,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         {
             // id should be UserID
             if (key != 1111)
-                return BadRequest("Status 401 -- Not Authorized");
+                return Unauthorized("Status 401 -- Not Authorized");
             else
                 return Ok($"Status 201 -- Post Success!");
         }
@@ -47,7 +47,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         // ex. DELETE api/v1/article/5?key=1111 -- working
         // admin can delete an article
         /// <summary>
-        /// This method deletes an article via DELETE request for an article if a valid admin key is coupled with
+        /// This method deletes an article via DELETE request for an article if a valid admin key is applied
         /// </summary>
         /// <param name="id">article id</param>
         /// <param name="key">admin key</param>
@@ -56,7 +56,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         public ActionResult<string> Delete(int id, int key)
         {
             if (key != 1111)
-                return BadRequest("Status 401 -- Not Authorized");
+                return Unauthorized("Status 401 -- Not Authorized");
             else
                 return Ok($"Status 200 -- Successfully Deleted! {id} has been removed.");
         }
