@@ -8,36 +8,15 @@ namespace mchildr3_webapi_articlejet.Controllers
     [ApiController]
     public class RatingsController : ControllerBase
     {
-        // GET: api/<RatingsController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // GET: api/v1/ratings/1/1111 -- working
+        // valid user can get all ratings for an article
+        [HttpGet("{id}/{key}")]
+        public ActionResult<string> Get(int id, int key)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<RatingsController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<RatingsController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<RatingsController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<RatingsController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (key != 1111)
+                return NotFound("Status 404 -- not an article");
+            else
+                return Ok($"Status 200 -- Hey! Good Key! Here's Article {id}");
         }
     }
 }

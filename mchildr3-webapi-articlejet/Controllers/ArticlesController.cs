@@ -8,36 +8,19 @@ namespace mchildr3_webapi_articlejet.Controllers
     [ApiController]
     public class ArticlesController : ControllerBase
     {
-        // GET: api/<ArticlesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // GET: api/v1/articles/1111 -- working
+        /// <summary>
+        /// This method returns all articles is key shows valid user
+        /// </summary>
+        /// <param name="key">user id</param>
+        /// <returns>returns all articles if user is valid</returns>
+        [HttpGet("{key}")]
+        public ActionResult<string> Get(string key)
         {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ArticlesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ArticlesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<ArticlesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ArticlesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (key != "1111")
+                return NotFound("Status 404 -- not an article");
+            else
+                return Ok("Status 200 -- Hey! Good Key!");
         }
     }
 }

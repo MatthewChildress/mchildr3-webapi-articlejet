@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "mchildr3-webapi-articlejet/1.0.0": {
+        "runtime": {
+          "mchildr3-webapi-articlejet.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "mchildr3-webapi-articlejet/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

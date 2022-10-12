@@ -8,36 +8,57 @@ namespace mchildr3_webapi_articlejet.Controllers
     [ApiController]
     public class ArticleController : ControllerBase
     {
-        // GET: api/<ArticleController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        // ex. GET: api/v1/article/1/1111 -- working
+        // valid user gets an article
+        /// <summary>
+        /// This method sends a GET request to retrieve information from a specific article id
+        /// </summary>
+        /// <param name="id">article ID</param>
+        /// <param name="key">valid user key</param>
+        /// <returns>returns http status that article query is not found, else successful status.</returns>
+        [HttpGet("{id}/{key}")]
+        public ActionResult<string> Get(int id, int key)
         {
-            return new string[] { "value1", "value2" };
+            // key denotes valid user. id is article.id
+            if (key != 1111)
+                return NotFound("Status 404 -- not an article");
+            else
+                return Ok($"Status 200 -- Hey! Good Key! Here is article {id}");
         }
 
-        // GET api/<ArticleController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<ArticleController>
+        // ex. POST api/v1/article/?key=1111
+        // valid user can add a new article
+        /// <summary>
+        /// This method makes a POST request adding a new article if UserID is valid
+        /// </summary>
+        /// <param name="key">User ID</param>
+        /// <param name="value">Article Content</param>
+        /// <returns>returns a not authorized http response if bad. else, http status code for successful creation </returns>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<string> Post(int key, [FromBody] string value)
         {
+            // id should be UserID
+            if (key != 1111)
+                return BadRequest("Status 401 -- Not Authorized");
+            else
+                return Ok($"Status 201 -- Post Success!");
         }
 
-        // PUT api/<ArticleController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<ArticleController>/5
+        // ex. DELETE api/v1/article/5?key=1111 -- working
+        // admin can delete an article
+        /// <summary>
+        /// This method deletes an article via DELETE request for an article if a valid admin key is coupled with
+        /// </summary>
+        /// <param name="id">article id</param>
+        /// <param name="key">admin key</param>
+        /// <returns>returns not authoriazed http response if not admin, else successful deletion.</returns>
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<string> Delete(int id, int key)
         {
+            if (key != 1111)
+                return BadRequest("Status 401 -- Not Authorized");
+            else
+                return Ok($"Status 200 -- Successfully Deleted! {id} has been removed.");
         }
     }
 }
