@@ -26,9 +26,15 @@ namespace mchildr3_webapi_articlejet.Controllers
 
         // ex. POST api/v1/user/ -- working
         // user requests to be added, returns new key
+        /// <summary>
+        /// This method submits user request and returns a key
+        /// </summary>
+        /// <param name="value">From Body inputs</param>
+        /// <returns>valid key if From Body is not null</returns>
         [HttpPost]
         public ActionResult<string> PostUserRequest([FromBody] string value)
         {
+            // key demo
             Random random = new Random();
             //if body is an empty string returns this error. if there is NOTHING in body. will be 415 error
             if (string.IsNullOrEmpty(value))
@@ -50,7 +56,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         [HttpPost("{id}")]
         public ActionResult<string> PostNewUser(int id, bool active, [FromBody] string value)
         {
-            // id should be UserID
+            // key demo
             Random random = new Random();
             if (id != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");

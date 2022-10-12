@@ -8,34 +8,41 @@ namespace mchildr3_webapi_articlejet.Controllers
     [ApiController]
     public class RatingController : ControllerBase
     {
-        // ex. GET api/v1/rating/11?key=1112
+        // ex. GET api/v1/rating/11?key=1112&type=avg
         // valid user can get the average rating for article ?type=avg
         /// <summary>
-        /// 
+        /// This method uses a GET request to return the average ratings from an article if a valid sorting parameter and valid user id are used.
         /// </summary>
         /// <param name="id">article id</param>
         /// <param name="key">user id</param>
-        /// <returns></returns>
+        /// <param name="type">sorting type</param>
+        /// <returns>returns not authorized http response if not valid user & sort, else returns average rating.</returns>
         [HttpGet("{id}")]
-        public ActionResult<string> RatingGet(int id, int key)
+        public ActionResult<string> GetAvgRating(int id, int key, string type)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
             else
-                return Ok($"Status 200 -- Here's all the ratings for Article {id}");
+            {
+                if (type != "avg")
+                    return BadRequest($"{type} is not a valid sorting type");
+                else
+                    return Ok($"Status 200 -- Here's all the ratings for Article {id}");
+            }
+                
         }
 
         // ex. POST api/v1/rating/11?key=1111 -- working
         // valid user can rate an article
         /// <summary>
-        /// 
+        /// This method uses a POST request to rate an article if user is valid.
         /// </summary>
         /// <param name="id">article id</param>
         /// <param name="key">user id</param>
         /// <param name="rating">rating from form value</param>
-        /// <returns></returns>
+        /// <returns>posts rating with valid user</returns>
         [HttpPost("{id}")]
-        public ActionResult<string> RatingsPost(int id, int key, [FromForm] string rating)
+        public ActionResult<string> PostRating(int id, int key, [FromForm] string rating)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
@@ -45,7 +52,7 @@ namespace mchildr3_webapi_articlejet.Controllers
                 if (string.IsNullOrEmpty(rating))
                     return BadRequest("Status 400 -- Invalid Request");
                 else
-                    return Ok($"Status 201 -- New Rating of {rating} posted to Article with an ID of {id}! ");
+                    return Ok($"Status 201 -- New Rating of {rating} posted to Article {id}! ");
             }
         }
 
@@ -59,7 +66,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="rating">rating from form value</param>
         /// <returns>returns not authorized http response if not valid user, else updates rating.</returns>
         [HttpPatch("{id}")]
-        public ActionResult<string> RatingsPatch(int id, int key, [FromForm] string rating)
+        public ActionResult<string> PatchRating(int id, int key, [FromForm] string rating)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
@@ -76,7 +83,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">admin key</param>
         /// <returns>returns not authoriazed http response if not admin, else successful deletion.</returns>
         [HttpDelete("{id}")]
-        public ActionResult<string> RatingsDelete(int id, int key)
+        public ActionResult<string> DeleteRating(int id, int key)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
