@@ -17,7 +17,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">valid user key</param>
         /// <returns>returns http status that article query is not found, else successful status.</returns>
         [HttpGet("{id}/{key}")]
-        public ActionResult<string> Get(int id, int key)
+        public ActionResult<string> GetArticles(int id, int key)
         {
             // key denotes valid user. id is article.id
             if (key != 1111)
@@ -35,7 +35,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="value">Article Content</param>
         /// <returns>returns a not authorized http response if bad. else, http status code for successful creation </returns>
         [HttpPost]
-        public ActionResult<string> Post(int key, [FromBody] string value)
+        public ActionResult<string> PostNewArticle(int key, [FromBody] string value)
         {
             // id should be UserID
             if (key != 1111)
@@ -53,7 +53,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">admin key</param>
         /// <returns>returns not authoriazed http response if not admin, else successful deletion.</returns>
         [HttpDelete("{id}")]
-        public ActionResult<string> Delete(int id, int key)
+        public ActionResult<string> DeleteArticle(int id, int key)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");

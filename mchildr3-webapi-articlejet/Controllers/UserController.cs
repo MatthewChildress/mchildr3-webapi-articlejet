@@ -16,7 +16,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">user id</param>
         /// <returns>if user id is valid, returns user status</returns>
         [HttpGet("status/{key}")]
-        public ActionResult<string> Get(int key)
+        public ActionResult<string> GetUser(int key)
         {
             if (key != 1111)
                 return NotFound("Status 404 -- not a valid user");
@@ -27,7 +27,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         // ex. POST api/v1/user/ -- working
         // user requests to be added, returns new key
         [HttpPost]
-        public ActionResult<string> UserRequestPost([FromBody] string value)
+        public ActionResult<string> PostUserRequest([FromBody] string value)
         {
             Random random = new Random();
             //if body is an empty string returns this error. if there is NOTHING in body. will be 415 error
@@ -48,7 +48,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="active">active status</param>
         /// <returns>returns not authorized http response if not admin, adds user and sets active status</returns>
         [HttpPost("{id}")]
-        public ActionResult<string> NewUserPost(int id, bool active, [FromBody] string value)
+        public ActionResult<string> PostNewUser(int id, bool active, [FromBody] string value)
         {
             // id should be UserID
             Random random = new Random();
@@ -75,7 +75,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="active">active status</param>
         /// <returns>returns not authorized http response if not admin, else updates user active status.</returns>
         [HttpPatch("{id}")]
-        public ActionResult<string> UserPatch(int id, bool active)
+        public ActionResult<string> PatchUser(int id, bool active)
         {
             if (id != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
@@ -91,13 +91,13 @@ namespace mchildr3_webapi_articlejet.Controllers
         // 
         // ex. DELETE api/v1/user/5?key=1111 -- working
         /// <summary>
-        /// This method deletes a user via DELETE request if a valid admin key is applied
+        /// This method removes a user via DELETE request if a valid admin key is applied
         /// </summary>
         /// <param name="id">User ID</param>
         /// <param name="key">Admin Key</param>
         /// <returns>returns not authoriazed http response if not admin, else successful deletion.</returns>
         [HttpDelete("{id}")]
-        public ActionResult<string> UserDelete(int id, int key)
+        public ActionResult<string> DeleteUser(int id, int key)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");

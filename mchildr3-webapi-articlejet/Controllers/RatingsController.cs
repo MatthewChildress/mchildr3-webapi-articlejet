@@ -17,7 +17,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">user id</param>
         /// <returns>returns all the ratings for a speicifc article if user id is valid</returns>
         [HttpGet("{id}/{key}")]
-        public ActionResult<string> Get(int id, int key)
+        public ActionResult<string> GetRatings(int id, int key)
         {
             if (key != 1111)
                 return Unauthorized("Status 401 -- You're not authorized to do that");

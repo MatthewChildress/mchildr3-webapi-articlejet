@@ -15,7 +15,7 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">user id</param>
         /// <returns>returns all articles if user is valid</returns>
         [HttpGet("{key}")]
-        public ActionResult<string> Get(string key)
+        public ActionResult<string> GetArticles(string key)
         {
             if (key != "1111")
                 return NotFound("Status 404 -- not an article");
