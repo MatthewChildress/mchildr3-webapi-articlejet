@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "fotEO7DzWxlXaBRbiJmoMvZEFYEHZcTWgJY0HcY9E+RLGoHUep2GgV401gCUSEQ5p79lNzJUz8Ire0PJfIhkIg==",
+  "dgSpecHash": "JtEdgqoBwCzxcOjudFZ/PBcastOGmpeBC5ctsnxFbCXrMwMhpcj5GON/vwf5ees9sAnz0eLfOeHd7NuiBNdfOg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mchildr3\\.nuget\\packages\\mysqlconnector\\2.1.13\\mysqlconnector.2.1.13.nupkg.sha512"
+  ],
   "logs": []
 }

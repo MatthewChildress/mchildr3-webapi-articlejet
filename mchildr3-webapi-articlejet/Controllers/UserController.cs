@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
+﻿using mchildr3_webapi_articlejet.DataTransfer;
+using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -32,12 +33,12 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="value">From Body inputs</param>
         /// <returns>valid key if From Body is not null</returns>
         [HttpPost]
-        public ActionResult<string> PostUserRequest([FromBody] string value)
+        public ActionResult<string> PostUserRequest([FromBody] UserDto data)
         {
             // key demo
             Random random = new Random();
             //if body is an empty string returns this error. if there is NOTHING in body. will be 415 error
-            if (string.IsNullOrEmpty(value))
+            if (data == null)
                 return BadRequest("Status 400 -- Invalid Request");
             else
                 return Ok($"Status 201 -- User Request Confirmed. Key is {random.Next(100000)}.");
@@ -54,14 +55,14 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="active">active status</param>
         /// <returns>returns not authorized http response if not admin, adds user and sets active status</returns>
         [HttpPost("{id}")]
-        public ActionResult<string> PostNewUser(int id, bool active, [FromBody] string value)
+        public ActionResult<string> PostNewUser(int id, bool active, [FromBody] UserDto data)
         {
             // key demo
             Random random = new Random();
             if (id != 1111)
                 return Unauthorized("Status 401 -- Not Authorized");
             //if body is an empty string returns this error. if there is NOTHING in body. will be 415 error
-            else if (string.IsNullOrEmpty(value))
+            else if (data == null)
                 return BadRequest("Status 400 -- Invalid Request");
             else
                 {
