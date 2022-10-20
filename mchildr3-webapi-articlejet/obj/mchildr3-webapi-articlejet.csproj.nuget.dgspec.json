@@ -45,9 +45,15 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+<<<<<<< HEAD
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.1.13, )"
+=======
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.31, )"
+>>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
             }
           },
           "imports": [
