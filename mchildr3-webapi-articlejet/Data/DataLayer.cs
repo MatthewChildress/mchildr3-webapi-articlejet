@@ -29,7 +29,7 @@ namespace mchildr3_webapi_articlejet.Data
             //preprocessor directives can help by using a debug build database environment for testing
             // while using a production database environment for production build.
 #if (DEBUG)
-            connectionString = @"server=localhost;uid=citc1317;pwd=Password1;database=neArticleJet";
+            connectionString = @"server=localhost;uid=root;pwd=335577;database=neArticleJet";
 #else
             connectionString = @"server=192.168.79.131;uid=citc1317;pwd=Password1;database=neArticleJet";
 #endif

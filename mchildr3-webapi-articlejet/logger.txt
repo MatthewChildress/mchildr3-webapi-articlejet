@@ -1,0 +1,1 @@
+10/21/2022 8:29:55 AM :: Cannot add or update a child row: a foreign key constraint fails (`nearticlejet`.`jetuser`, CONSTRAINT `FK_JetUser_UserLevel` FOREIGN KEY (`LevelId`) REFERENCES `userlevel` (`LevelId`))

@@ -2,12 +2,6 @@
   "version": 3,
   "targets": {
     "net6.0": {
-<<<<<<< HEAD
-      "MySqlConnector/2.1.13": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/MySqlConnector.dll": {
-=======
       "Google.Protobuf/3.19.4": {
         "type": "package",
         "compile": {
@@ -28,17 +22,10 @@
         },
         "compile": {
           "lib/netstandard2.0/K4os.Compression.LZ4.dll": {
->>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
             "related": ".xml"
           }
         },
         "runtime": {
-<<<<<<< HEAD
-          "lib/net6.0/MySqlConnector.dll": {
-            "related": ".xml"
-          }
-        }
-=======
           "lib/netstandard2.0/K4os.Compression.LZ4.dll": {
             "related": ".xml"
           }
@@ -131,6 +118,19 @@
             "related": ".xml"
           },
           "lib/net6.0/ZstdNet.dll": {}
+        }
+      },
+      "MySqlConnector/2.1.13": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MySqlConnector.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Portable.BouncyCastle/1.9.0": {
@@ -337,40 +337,10 @@
             "rid": "win"
           }
         }
->>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
       }
     }
   },
   "libraries": {
-<<<<<<< HEAD
-    "MySqlConnector/2.1.13": {
-      "sha512": "Y3qts7mnuZ4EGEQOI4xJ1n+9ZJOmrcwD2CdqyAXuQONBkrc2ENDywE6ZBysFaRojXrnWzLXpc595+GYlN/PI9Q==",
-      "type": "package",
-      "path": "mysqlconnector/2.1.13",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net45/MySqlConnector.dll",
-        "lib/net45/MySqlConnector.xml",
-        "lib/net461/MySqlConnector.dll",
-        "lib/net461/MySqlConnector.xml",
-        "lib/net471/MySqlConnector.dll",
-        "lib/net471/MySqlConnector.xml",
-        "lib/net5.0/MySqlConnector.dll",
-        "lib/net5.0/MySqlConnector.xml",
-        "lib/net6.0/MySqlConnector.dll",
-        "lib/net6.0/MySqlConnector.xml",
-        "lib/netcoreapp3.1/MySqlConnector.dll",
-        "lib/netcoreapp3.1/MySqlConnector.xml",
-        "lib/netstandard2.0/MySqlConnector.dll",
-        "lib/netstandard2.0/MySqlConnector.xml",
-        "lib/netstandard2.1/MySqlConnector.dll",
-        "lib/netstandard2.1/MySqlConnector.xml",
-        "logo.png",
-        "mysqlconnector.2.1.13.nupkg.sha512",
-        "mysqlconnector.nuspec"
-=======
     "Google.Protobuf/3.19.4": {
       "sha512": "fd07/ykL4O4FhqrZIELm5lmiyOHfdPg9+o+hWr6tcfRdS7tHXnImg/2wtogLzlW2eEmr0J7j6ZrZvaWOLiJbxQ==",
       "type": "package",
@@ -529,6 +499,35 @@
         "lib/netstandard2.1/ZstdNet.dll",
         "mysql.data.8.0.31.nupkg.sha512",
         "mysql.data.nuspec"
+      ]
+    },
+    "MySqlConnector/2.1.13": {
+      "sha512": "Y3qts7mnuZ4EGEQOI4xJ1n+9ZJOmrcwD2CdqyAXuQONBkrc2ENDywE6ZBysFaRojXrnWzLXpc595+GYlN/PI9Q==",
+      "type": "package",
+      "path": "mysqlconnector/2.1.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net45/MySqlConnector.xml",
+        "lib/net461/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.xml",
+        "lib/net471/MySqlConnector.dll",
+        "lib/net471/MySqlConnector.xml",
+        "lib/net5.0/MySqlConnector.dll",
+        "lib/net5.0/MySqlConnector.xml",
+        "lib/net6.0/MySqlConnector.dll",
+        "lib/net6.0/MySqlConnector.xml",
+        "lib/netcoreapp3.1/MySqlConnector.dll",
+        "lib/netcoreapp3.1/MySqlConnector.xml",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.xml",
+        "lib/netstandard2.1/MySqlConnector.dll",
+        "lib/netstandard2.1/MySqlConnector.xml",
+        "logo.png",
+        "mysqlconnector.2.1.13.nupkg.sha512",
+        "mysqlconnector.nuspec"
       ]
     },
     "Portable.BouncyCastle/1.9.0": {
@@ -927,37 +926,33 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
->>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-<<<<<<< HEAD
+      "MySql.Data >= 8.0.31",
       "MySqlConnector >= 2.1.13"
-=======
-      "MySql.Data >= 8.0.31"
->>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mchildr3\\.nuget\\packages\\": {},
+    "C:\\Users\\mattg\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
+      "projectUniqueName": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
       "projectName": "mchildr3-webapi-articlejet",
-      "projectPath": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
-      "packagesPath": "C:\\Users\\mchildr3\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\obj\\",
+      "projectPath": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
+      "packagesPath": "C:\\Users\\mattg\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mchildr3\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mattg\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -985,15 +980,13 @@
       "net6.0": {
         "targetAlias": "net6.0",
         "dependencies": {
-<<<<<<< HEAD
-          "MySqlConnector": {
-            "target": "Package",
-            "version": "[2.1.13, )"
-=======
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.31, )"
->>>>>>> 142093bd02be60dd4b96e7e216ff9d76226f8e64
+          },
+          "MySqlConnector": {
+            "target": "Package",
+            "version": "[2.1.13, )"
           }
         },
         "imports": [

@@ -1,6 +1,10 @@
-﻿using mchildr3_webapi_articlejet.DataTransfer;
+﻿using mchildr3_webapi_articlejet.BusinessLayer;
+using mchildr3_webapi_articlejet.Data;
+using mchildr3_webapi_articlejet.DataTransfer;
+using mchildr3_webapi_articlejet.Model;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -33,15 +37,44 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="value">From Body inputs</param>
         /// <returns>valid key if From Body is not null</returns>
         [HttpPost]
-        public ActionResult<string> PostUserRequest([FromBody] UserDto data)
+        public ActionResult<string> PostUserRequest([FromBody] UserDto userDto)
         {
-            // key demo
-            Random random = new Random();
-            //if body is an empty string returns this error. if there is NOTHING in body. will be 415 error
-            if (data == null)
-                return BadRequest("Status 400 -- Invalid Request");
+            DataLayer dl = new DataLayer();
+            if (userDto != null)
+            {
+                if (BusLogLayer.ValidateUserDto(userDto).ValidUserDto)
+                {
+                    SHA256 sha256Hash = SHA256.Create();
+                    var hashPass = BusLogLayer.GetHash(sha256Hash, userDto.UserPassword);
+                    var guid = Guid.NewGuid().ToString();
+                    User user = new User();
+                    user.Guid = guid;
+                    user.Email = userDto.Email;
+                    user.Password = hashPass;
+                    user.FirstName = userDto.FirstName;
+                    user.LastName = userDto.LastName;
+                    user.IsActive = false;
+                    user.LevelID = 1;
+
+                    var results = dl.PostANewUserAsync(user);
+                    if (results.Result > 0)
+                    {
+                        return Ok(userDto);
+                    }
+                    else
+                    {
+                        return BadRequest("Not successful adding user to the database.");
+                    }
+                }
+                else
+                {
+                    return BadRequest(userDto);
+                }
+            }
             else
-                return Ok($"Status 201 -- User Request Confirmed. Key is {random.Next(100000)}.");
+            {
+                return BadRequest("no data");
+            }
         }
 
 
