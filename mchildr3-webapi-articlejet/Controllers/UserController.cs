@@ -168,17 +168,17 @@ namespace mchildr3_webapi_articlejet.Controllers
         }
         // ex. DELETE api/v1/user/adminKey/userKey -- working
         // admin can delete a user
-        [HttpDelete("{id}")]
+        [HttpDelete("{adminKey}/{userKey}")]
         public ActionResult<string> DeleteUser(string adminKey, string userKey)
         {
-            // admin key is 1 or 2 LevelId
+            // admin key is LevelID 1
             DataLayer dl = new DataLayer();
             var adminResults = dl.GetAUserByGUIDAsync(adminKey);    
 
-            if (adminResults.Result != null & adminResults.Result.LevelID <= 2)
+            if (adminResults.Result != null & adminResults.Result.LevelID == 1)
             {
                 var userResults = dl.GetAUserByGUIDAsync(userKey);
-                if (userResults.Result != null && ((userResults.Result.LevelID != 1) || (userResults.Result.LevelID != 2)))
+                if (userResults.Result != null && userResults.Result.LevelID != 1)
                 {
                     return Ok($"{adminKey} and {userKey} exists to be deleted");
                 }
