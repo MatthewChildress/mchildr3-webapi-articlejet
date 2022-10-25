@@ -96,14 +96,14 @@ namespace mchildr3_webapi_articlejet.Controllers
         /// <param name="key">admin key</param>
         /// <param name="userDto"></param>
         /// <returns></returns>
-        [HttpPost("{key}")]
+        [HttpPost("{adminKey}")]
         public ActionResult<string> PostNewUserActiveStatus(string key, [FromBody] UserDto userDto)
         {
             // admin key is 1 or 2
             DataLayer dl = new DataLayer();
             var keyResults = dl.GetAUserByGUIDAsync(key);
 
-            if (keyResults.Result != null)
+            if (keyResults.Result != null && (keyResults.Result.LevelID == 1 || keyResults.Result.LevelID == 2))
             {
                 if (BusLogLayer.ValidateUserDto(userDto).ValidUserDto)
                 {
@@ -127,7 +127,7 @@ namespace mchildr3_webapi_articlejet.Controllers
                 }
                 else
                 {
-                    return BadRequest(userDto);
+                    return BadRequest("not valid user info to post");
                 }
             }
             else
@@ -135,35 +135,55 @@ namespace mchildr3_webapi_articlejet.Controllers
                 return BadRequest("Admin key is not valid");
             }
         }
+
+        // api/v1/user/{adminKey}/{userKey}/&status=true/false
         // ex. PATCH api/v1/user/1111?active=false -- working
-        /// <summary>
-        /// This method updates a users active status if a valid admin key is applied
-        /// </summary>
-        /// <param name="id">admin key</param>
-        /// <param name="active">active status</param>
-        /// <returns>returns not authorized http response if not admin, else updates user active status.</returns>
-        [HttpPatch("{id}")]
-        public ActionResult<string> PatchUserStatus(string adminKey, [FromQuery] bool status)
+        [HttpPatch("{adminKey}/{userKey}")]
+        public ActionResult<string> PatchUserStatus(string adminKey, string userKey, [FromQuery] bool status)
         {
             // is adminkey valid (1 or 2?) and active
             // validate status returns true or false
             // return correct responses
             DataLayer dl = new DataLayer();
-            Task<User>? userResults = dl.GetAUserByGUIDAsync(adminKey);
-            if (userResults.Result != null && (userResults.Result.LevelID == 1 || userResults.Result.LevelID == 2))
+            Task<User>? adminResults = dl.GetAUserByGUIDAsync(adminKey);
+            if (adminResults.Result != null && (adminResults.Result.LevelID == 1 || adminResults.Result.LevelID == 2))
             {
-                if (status == true)
+                if (adminResults.Result.IsActive == true)
                 {
-                    return Ok("Status is active");
+                    var userResults = dl.GetAUserByGUIDAsync(userKey);
+                    if (userResults.Result != null && (userResults.Result.LevelID != 1 || userResults.Result.LevelID != 2))
+                    {
+                        var userUpdate = dl.PutAUsersStateAsync(userKey, status);
+                        if (userUpdate.Result > 0)
+                        {
+                            if (status == true)
+                            {
+                                return Ok($"{userKey} is set to active");
+                            }
+                            else
+                            {
+                                return Ok($"{userKey} is set to inactive");
+                            }
+                        }
+                        else
+                        {
+                            return BadRequest("user not updated");
+                        }
+                    
+                    }
+                    else
+                    {
+                        return BadRequest("invalid user key.");
+                    }
                 }
                 else
                 {
-                    return BadRequest("Status is inactive");
+                    return BadRequest("admin status is not active to execute user update.");
                 }
             }
             else
             {
-                return BadRequest("");
+                return BadRequest("invalid admin key.");
             }
         }
         // ex. DELETE api/v1/user/adminKey/userKey -- working
@@ -175,10 +195,10 @@ namespace mchildr3_webapi_articlejet.Controllers
             DataLayer dl = new DataLayer();
             var adminResults = dl.GetAUserByGUIDAsync(adminKey);    
 
-            if (adminResults.Result != null & adminResults.Result.LevelID == 1)
+            if (adminResults.Result != null && (adminResults.Result.LevelID == 1 || adminResults.Result.LevelID == 2))
             {
                 var userResults = dl.GetAUserByGUIDAsync(userKey);
-                if (userResults.Result != null && userResults.Result.LevelID != 1)
+                if (userResults.Result != null && (userResults.Result.LevelID != 1 || userResults.Result.LevelID != 2))
                 {
                     return Ok($"{adminKey} and {userKey} exists to be deleted");
                 }

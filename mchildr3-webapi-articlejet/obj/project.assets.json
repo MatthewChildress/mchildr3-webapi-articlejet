@@ -936,23 +936,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mattg\\.nuget\\packages\\": {},
+    "C:\\Users\\mchildr3\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
+      "projectUniqueName": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
       "projectName": "mchildr3-webapi-articlejet",
-      "projectPath": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
-      "packagesPath": "C:\\Users\\mattg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mattg\\source\\repos\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\obj\\",
+      "projectPath": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet.csproj",
+      "packagesPath": "C:\\Users\\mchildr3\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mchildr3\\source\\repos\\MatthewChildress\\mchildr3-webapi-articlejet\\mchildr3-webapi-articlejet\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\mattg\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mchildr3\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
