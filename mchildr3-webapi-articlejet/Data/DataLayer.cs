@@ -96,7 +96,7 @@ namespace mchildr3_webapi_articlejet.Data
                     user.FirstName = (string?)rdr.GetValue(2);
                     user.LastName = (string?)rdr.GetValue(3);
                     UInt64 test = (UInt64)rdr.GetValue(4);
-                    if (test == 0)
+                    if (test == 1)
                         user.IsActive = true;
                     else
                         user.IsActive = false;
@@ -406,6 +406,62 @@ namespace mchildr3_webapi_articlejet.Data
             return results;
 
         } // end PostANewUserAsync
+
+        public async Task<int> DeleteAUserAsync(string? userGuid)
+        {
+            // integer value that shows if a row is updated in the database
+            int results = 0;
+
+            try
+            {
+                // check for null parameters being passed in
+                if (userGuid == null)
+                {
+                    throw new ArgumentNullException("GUID can not be null.");
+                }
+
+                //using guarentees the release of resources at the end of scope 
+                using MySqlConnection conn = new MySqlConnection(connectionString);
+
+                // open the database connection
+                conn.Open();
+
+                // create a command object identifying the stored procedure
+                using MySqlCommand cmd = new MySqlCommand("spDeleteAUserByGuid", conn);
+
+                // set the command object so it knows to execute a stored procedure
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                // add parameters to command, which will be passed to the stored procedure
+                cmd.Parameters.Add(new MySqlParameter("GUID", userGuid));
+
+                // execute the none query command that returns an integer for number of rows changed
+                results = await cmd.ExecuteNonQueryAsync();
+
+            }
+            catch (ArgumentNullException ex)
+            {
+                LoggerJet lj = new LoggerJet();
+                lj.WriteLog(ex.Message);
+            }
+            catch (MySqlException ex)
+            {
+                LoggerJet lj = new LoggerJet();
+                lj.WriteLog(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                LoggerJet lj = new LoggerJet();
+                lj.WriteLog(ex.Message);
+            }
+            finally
+            {
+                // no clean up because the 'using' statements guarantees closing resources
+            }
+
+            return results;
+
+        } // end DeleteAUserAsync
 
         #endregion
     }
